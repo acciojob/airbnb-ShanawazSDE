@@ -12,8 +12,8 @@ import java.util.*;
 
 @Service
 public class HotelService {
-    @Autowired
-    HotelRepo hotelRepo;
+    //@Autowired
+    HotelRepo hotelRepo = new HotelRepo();
 
     public void addHotel(Hotel hotel) throws RuntimeException {
         if(hotel == null || hotel.getHotelName() == null

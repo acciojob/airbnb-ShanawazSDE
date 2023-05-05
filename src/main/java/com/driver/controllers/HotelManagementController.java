@@ -6,6 +6,8 @@ import com.driver.model.Hotel;
 import com.driver.model.User;
 import com.driver.services.HotelService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -23,8 +25,8 @@ import java.util.UUID;
 @RequestMapping("/hotel")
 public class HotelManagementController {
 
-    @Autowired
-    HotelService hotelService ;
+//    @Autowired
+    HotelService hotelService = new HotelService() ;
 
     @PostMapping("/add-hotel")
     public String addHotel(@RequestBody Hotel hotel){
@@ -36,11 +38,26 @@ public class HotelManagementController {
         try {
             hotelService.addHotel(hotel);
         }catch (RuntimeException e){
-            return e.getMessage();
+            return "FAILURE";
         }
 
         return "SUCCESS";
     }
+//@PostMapping("/add-hotel")
+//public ResponseEntity<String> addHotel(@RequestBody Hotel hotel){
+//
+//    //You need to add an hotel to the database
+//    //incase the hotelName is null or the hotel Object is null return an empty a FAILURE
+//    //Incase somebody is trying to add the duplicate hotelName return FAILURE
+//    //in all other cases return SUCCESS after successfully adding the hotel to the hotelDb.
+//    try {
+//        hotelService.addHotel(hotel);
+//    }catch (RuntimeException e){
+//        return new ResponseEntity<>("FAILURE", HttpStatus.BAD_REQUEST);
+//    }
+//
+//    return new ResponseEntity<>("SUCCESS", HttpStatus.BAD_REQUEST);
+//}
 
     @PostMapping("/add-user")
     public Integer addUser(@RequestBody User user){
@@ -52,6 +69,17 @@ public class HotelManagementController {
 
        return user.getaadharCardNo();
     }
+
+//    @PostMapping("/add-user")
+//    public ResponseEntity addUser(@RequestBody User user){
+//
+//        //You need to add a User Object to the database
+//        //Assume that user will always be a valid user and return the aadharCardNo of the user
+//        hotelService.addUser(user);
+//
+//
+//        return new ResponseEntity("success",HttpStatus.ACCEPTED);
+//    }
 
     @GetMapping("/get-hotel-with-most-facilities")
     public String getHotelWithMostFacilities(){
