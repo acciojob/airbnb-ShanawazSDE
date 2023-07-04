@@ -43,21 +43,7 @@ public class HotelManagementController {
 
         return "SUCCESS";
     }
-//@PostMapping("/add-hotel")
-//public ResponseEntity<String> addHotel(@RequestBody Hotel hotel){
-//
-//    //You need to add an hotel to the database
-//    //incase the hotelName is null or the hotel Object is null return an empty a FAILURE
-//    //Incase somebody is trying to add the duplicate hotelName return FAILURE
-//    //in all other cases return SUCCESS after successfully adding the hotel to the hotelDb.
-//    try {
-//        hotelService.addHotel(hotel);
-//    }catch (RuntimeException e){
-//        return new ResponseEntity<>("FAILURE", HttpStatus.BAD_REQUEST);
-//    }
-//
-//    return new ResponseEntity<>("SUCCESS", HttpStatus.BAD_REQUEST);
-//}
+
 
     @PostMapping("/add-user")
     public Integer addUser(@RequestBody User user){
@@ -70,16 +56,7 @@ public class HotelManagementController {
        return user.getaadharCardNo();
     }
 
-//    @PostMapping("/add-user")
-//    public ResponseEntity addUser(@RequestBody User user){
-//
-//        //You need to add a User Object to the database
-//        //Assume that user will always be a valid user and return the aadharCardNo of the user
-//        hotelService.addUser(user);
-//
-//
-//        return new ResponseEntity("success",HttpStatus.ACCEPTED);
-//    }
+
 
     @GetMapping("/get-hotel-with-most-facilities")
     public String getHotelWithMostFacilities(){
